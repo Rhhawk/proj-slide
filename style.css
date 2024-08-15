@@ -1,0 +1,340 @@
+* {
+    font-family: "Poppins", sans-serif;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+}
+
+body {
+
+    background-color: black;
+    color: #eee;
+    font-size: 12px;
+}
+
+header {
+    width: 80%;
+    height: 50px;
+    /*background-color: red;
+    remover depois por agora so para visualizar*/
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    /*z index serve para informar se um item vai ficar na frente do outro (o que tiver 2 fica na frente do 1 assim por diante)*/
+
+    margin: auto;
+    /* margim auto, define valores iguais da margim ondem sobrou espaço (nesse caso pelo width ser 80%  definiu a margim sobre os outros 20% na esquerda e direita)*/
+}
+
+header a {
+
+    color: #eee;
+    margin-right: 40px;
+    font-weight: 300;
+    transition: 0.2s linear;
+    
+}
+
+header a:hover{
+    font-size: 13px;
+    
+
+}
+
+.container {
+
+    height: 100vh;
+    width: 100vw;
+    margin-top: -50px;
+    overflow: hidden;
+    /* overflow: scroll serve para deixa com uma barrinha de scroll para descer quando o conteudo for maior que a tela
+                         overflow: hidden serve para deixar o conteudo so na tela vista sem ter que descer*/
+}
+
+.container .list .list-item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+
+.container .list .list-item img {
+    object-fit: cover;
+    /* object-fit: ferramenta para ajustar o tamanho da img/video,
+                            -cover = coloca na tela todo sem esticar mas com zoom
+                            -container = imagem original na tela
+                            -fill = estica a imagem na tela mas ela pode se distorcer */
+    width: 100%;
+    height: 100%;
+    filter: brightness(60%);
+    /* filter: brightness = brilho da imagem */
+
+}
+
+.container .list .list-item .content {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    padding-right: 30%;
+    width: 80%;
+    color: #eee;
+    text-shadow: 0 5px 10px #0004;
+}
+
+.container .list .list-item .title {
+    font-size: 5em;
+    font-weight: 700;
+    line-height: 1.3em;
+}
+
+.container .list .list-item .description {
+    font-size: 1.5em;
+
+}
+
+.container .list .list-item .buttons {
+    display: grid;
+    /* display grid e basicamente vai deixar os items como se tivesse em grade |item1||item2|  */
+
+    grid-template-columns: repeat(2, 130px);
+    /*defini o tamanho da coluna, repeat(repete o tamanho na quantida de coluna definida = 2(colunas) 130px(width(largura) delas)*/
+
+    grid-template-rows: 40px;
+    /* defini o height(altura) das colunas*/
+    margin-top: 20px;
+    gap: 6px;
+
+
+}
+
+.container .list .list-item .buttons button {
+    background-color: #eee;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+.container .list .list-item .buttons button:hover {
+    background-color: transparent;
+    border: 1px solid #eee;
+    color: #eee;
+    transition: 0.7s;
+}
+
+
+.container .list .list-item .buttons button:nth-child(2) {
+    /*nth-child quando vc tem dois itens com o mesmo nome seleciona qual deles ira modificar pela ordem criada nesse caso selecionou o segundo botao com o (2)  */
+    
+    background-color: transparent;
+    border: 1px solid #eee;
+    color: #eee;
+}
+
+.container .list .list-item .buttons button:nth-child(2):hover {
+    background-color: #eee;
+    border: none;
+    color: black;
+
+
+}
+
+.container .thumb{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    display: flex;
+    gap: 20px;
+    
+}
+
+
+.container .thumb .thumb-item{
+width: 135px;
+height: 200px;
+position: relative;
+display: flex;
+gap: 20px;
+transition: 0.3s;
+z-index: 3;
+}
+
+
+
+.container .thumb .thumb-item img{
+
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 10px;
+filter: brightness(80%);
+cursor: pointer;
+
+
+}
+
+
+.container .thumb .content{
+
+position: absolute;
+bottom: 10px;
+left: 10px;
+}
+
+.container .thumb .thumb-item:hover{
+
+    opacity: 0.7;
+}
+
+.container .arrows{
+display: flex;
+align-items: center;
+gap: 10px;
+position: absolute;
+bottom: 120px;
+left: 120px;
+width: 300px;
+
+}
+
+.container .arrows button{
+    border-radius: 10px;
+    border: none;
+    padding: 12px 17px;
+    background-color:#eee4;
+    color: #eee;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.container .arrows button:hover{
+background-color: #eee;
+color: black;
+transition: 0.7s;
+
+}
+
+/* Movimento da thumb*/
+
+.container.next .thumb{ /*.container.next e o nome da classe escolhida no script*/
+    animation: effectNextThumb 1s linear 1 forwards; /* 
+    animation: nomedela"@keyframes" tempo(0.5s) tipo (linear) repetição (1) final(forwards=chega la e fica)*/
+
+}
+
+@keyframes effectNextThumb { /* "keyframes tipo de animação depois define o nome dela */
+    from { /* from inicial*/
+        transform: translateX(150px); /*movimento*/
+
+    }
+}
+
+/*Movimento ultima thumb*/
+
+.container.next .thumb .thumb-item:nth-last-child(1){/*nth-last-child começa contado do ultimo*/
+    animation: effectLastThumb 1s linear 1 forwards; 
+
+}
+@keyframes effectLastThumb {
+    from{
+        width: 0;
+        opacity: 0;
+    }
+    
+}
+
+
+.list-item:nth-last-child(1) .content .title,
+.list-item:nth-last-child(1) .content .description,
+.list-item:nth-last-child(1) .content .buttons{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear forwards ;
+}
+
+
+@keyframes showContent {
+    to{ /*final*/
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    
+    
+    }
+    
+}
+
+.list-item:nth-last-child(1) .content .title{
+
+    animation-delay: 1.2s;
+}
+
+
+.list-item:nth-last-child(1) .content .description{
+
+    animation-delay: 1.6s;
+}
+
+.list-item:nth-last-child(1) .content .buttons{
+    
+    animation-delay: 2s;
+
+}
+
+/*Imagem Principal Next*/
+.container.next .list .list-item:nth-last-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+
+    animation: showMainImg 0.5s linear 1 forwards;
+
+}
+
+@keyframes showMainImg {
+    to{
+
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+
+/*Imagem Principal Back*/ 
+.container.back .list .list-item:nth-child(1) img{ /*efeiro oposto do next*/
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 2;
+
+    animation: hideMainImg 1s linear 1 forwards;
+    
+
+}
+
+@keyframes hideMainImg {
+
+    to{
+
+        width: 134px;
+        height: 199px;
+        border-radius: 10px;
+        left: 50%;
+        bottom: 50px;
+    }
+    
+}
