@@ -23,7 +23,7 @@ header {
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     /*z index serve para informar se um item vai ficar na frente do outro (o que tiver 2 fica na frente do 1 assim por diante)*/
 
     margin: auto;
@@ -238,7 +238,7 @@ transition: 0.7s;
 
 /*Movimento ultima thumb*/
 
-.container.next .thumb .thumb-item:nth-last-child(1){/*nth-last-child começa contado do ultimo*/
+.container.next  .thumb .thumb-item:nth-last-child(1){/*nth-last-child começa contado do ultimo*/
     animation: effectLastThumb 1s linear 1 forwards; 
 
 }
@@ -250,6 +250,33 @@ transition: 0.7s;
     
 }
 
+.container.back .thumb{ /*.container.back e o nome da classe escolhida no script*/
+    animation: effectBackThumb 1s linear 1 forwards; /* 
+    animation: nomedela"@keyframes" tempo(1s) tipo (linear) repetição (1) final(forwards=chega la e fica)*/
+
+}
+
+@keyframes effectBackThumb { /* "keyframes tipo de animação depois define o nome dela */
+    from { /* from inicial*/
+        transform: translateX(150px); /*movimento*/
+
+    }
+}
+
+/*Movimento ultima thumb*/
+
+.container.back  .thumb .thumb-item:nth-last-child(1){/*nth-last-child começa contado do ultimo*/
+    animation: effectThumb 1s linear 1 forwards; 
+
+}
+@keyframes effectThumb {
+    from{
+        width: 0;
+        opacity: 0;
+        
+    }
+    
+}
 
 .list-item:nth-last-child(1) .content .title,
 .list-item:nth-last-child(1) .content .description,
@@ -330,11 +357,14 @@ transition: 0.7s;
 
     to{
 
-        width: 134px;
-        height: 199px;
+        width: 135px;
+        height: 200px;
         border-radius: 10px;
         left: 50%;
         bottom: 50px;
+        filter: brightness(80%);
+        z-index: 1;
+        opacity: 0;
     }
     
 }
